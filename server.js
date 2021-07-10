@@ -3,8 +3,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
 
+var corsOptions = {
+  origin: "http://localhost:8000"
+};
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.static('./dist/Angular10Crud'));
 
 // parse requests of content-type - application/json
@@ -21,12 +25,17 @@ db.sequelize.sync();
 //   console.log("Drop and re-sync db.");
 // });
 
-// simple route
-
+// routing --index.html lets angular take the control of routing
 app.get('/', (req, res) =>
     res.sendFile('index.html', {root: 'dist/Angular10Crud/'}),
 );
 app.get('/tutorials', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/Angular10Crud/'}),
+);
+app.get('/tutorials/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/Angular10Crud/'}),
+);
+app.get('/add', (req, res) =>
     res.sendFile('index.html', {root: 'dist/Angular10Crud/'}),
 );
 
