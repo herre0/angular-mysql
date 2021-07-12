@@ -1,1 +1,1 @@
-Web crud app used Angular, Node.js and Mysql
+Web crud app that's used Angular, Node.js and Mysql
